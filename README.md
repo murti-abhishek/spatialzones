@@ -1,13 +1,13 @@
 # spatialzones
 
-**Reads spatial transcriptomics input, computes tumor regions and tumor microenvironment zones, and visualizes region assignments.**
+**Reads spatial transcriptomics input, computes tumor regions based on celltype annotations for tumor microenvironment analysis, and visualizes region assignments.**
 
 ## Features
 
-- ☐ Computes **inside / interface / outside tumor regions** using spatial transcriptomics data  
-- ☐ Utilizes **nearest neighbors** to define spatial context  
-- ☐ Visualizes region assignments and regional compositions of cell types  
-- ☐ Supports plotting gene expression across regions
+- Computes **inside / interface / outside tumor regions** using spatial transcriptomics data (Xenium) 
+- Utilizes **nearest neighbors** to define spatial context  
+- Visualizes region assignments and regional compositions of cell types  
+- Supports plotting gene expression across regions
 
 ## Installation
 
