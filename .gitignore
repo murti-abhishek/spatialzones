@@ -53,3 +53,5 @@ Thumbs.db
 # Squidpy/Scanpy cache (often created silently)
 */cache/
 
+# Mac extras
+.DS_Store
