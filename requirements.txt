@@ -91,7 +91,6 @@ six==1.17.0
 slicerator==1.1.0
 spatial_image==1.2.3
 spatialdata==0.6.0
--e git+https://github.com/murti-abhishek/spatialzones.git@47ae82ae44efde9a8cdaac6547e77cf2faa1edf6#egg=spatialzones
 squidpy==1.6.2
 statsmodels==0.14.5
 texttable==1.7.0
