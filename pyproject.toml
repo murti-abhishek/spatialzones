@@ -1,0 +1,38 @@
+[build-system]
+requires = ["setuptools>=65", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "spatialzones"
+version = "0.1.0"
+description = "Graph-based assignment of spatial tumor zones (inside / interface / outside) for Xenium spatial transcriptomics."
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+
+authors = [
+    { name = "Abhishek", email = "murtiabhishek@gmail.com" }
+]
+
+keywords = ["spatial transcriptomics", "single-cell", "tumor microenvironment", "zonal analysis"]
+
+dependencies = [
+    "numpy",
+    "pandas",
+    "scipy",
+    "scanpy",
+    "anndata",
+    "matplotlib",
+    "squidpy",
+    "seaborn",
+    "scikit-learn",
+]
+
+[project.urls]
+Homepage = "https://github.com/murti-abhishek/spatialzones"
+Issues = "https://github.com/murti-abhishek/spatialzones/issues"
+Source = "https://github.com/murti-abhishek/spatialzones"
+Documentation = "https://github.com/murti-abhishek/spatialzones"
+
+[tool.setuptools.packages.find]
+where = ["src"]
