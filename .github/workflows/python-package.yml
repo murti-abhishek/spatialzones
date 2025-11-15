@@ -1,44 +1,49 @@
-name: spatialzones CI testing
+name: Python package spatialzones testing workflow
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
   pull_request:
+    branches: [main]
 
 jobs:
-  build-and-test:
+  test:
+
     runs-on: ubuntu-latest
+
     strategy:
       matrix:
         python-version: [3.11]
 
     steps:
-      - uses: actions/checkout@v3
+    - name: Checkout repository
+      uses: actions/checkout@v3
 
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: ${{ matrix.python-version }}
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ matrix.python-version }}
 
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
-          pip install -r dev-requirements.txt
-	
-      - name : Install package
-	run: |
-	  pip install -e ./src/spatialzones
+    - name: Upgrade pip
+      run: python -m pip install --upgrade pip
 
-      - name: Run tests with coverage
-        run: |
-          pytest --cov=src/spatialzones tests/
-      
-      - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v4
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-          files: ./coverage.xml
-          fail_ci_if_error: true
+    - name: Install dependencies
+      run: |
+        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+        if [ -f dev-requirements.txt ]; then pip install -r dev-requirements.txt; fi
+
+    - name: Install spatialzones package
+      run: pip install -e ./src/spatialzones
+
+    - name: Run tests with coverage
+      run: |
+        pytest --verbose --cov=spatialzones tests/
+
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v4
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }}
+        files: ./coverage.xml
+        flags: unittests
+        name: codecov-umbrella
 
