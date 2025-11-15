@@ -1,21 +1,55 @@
-# Python
+# Byte-compiled / optimized / DLL files
 __pycache__/
-*.pyc
-*.pyo
-*.pyd
-*.swp
-*.egg-info/
+*.py[cod]
+*$py.class
+
+# R files
+.Rhistory
 
 # Virtual environments
 venv/
-venv_latest/
+venv_*/
+.env/
+.env*/
 
-# Jupyter
+# Jupyter notebook checkpoints
 .ipynb_checkpoints/
 
-# Pytest cache
+# Build / packaging
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# PyTest cache
 .pytest_cache/
+
+# Coverage files
+.coverage
+htmlcov/
+
+# IDE directories
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Local data files (keep only those needed for tests)
+*.h5ad
+*.loom
+*.h5
+*.bam
+*.bai
+
+# BUT allow test fixtures (small, <5 MB)
+!src/spatialzones/datasets/example_spatial.h5ad
+!tests/data/*
 
 # Logs
 *.log
+
+# Squidpy/Scanpy cache (often created silently)
+*/cache/
 
