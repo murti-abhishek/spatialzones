@@ -26,6 +26,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
           pip install -r dev-requirements.txt
+	  pip install -e ./src/spatialzones
 
       - name: Run tests with coverage
         run: |
