@@ -1,5 +1,8 @@
 # spatialzones
 
+[![Python Package](https://github.com/murti-abhishek/spatialzones/actions/workflows/python-package.yml/badge.svg)](https://github.com/murti-abhishek/spatialzones/actions/workflows/python-package.yml)
+[![codecov](https://codecov.io/gh/murti-abhishek/spatialzones/branch/main/graph/badge.svg?token=YOUR_CODECOV_TOKEN)](https://codecov.io/gh/murti-abhishek/spatialzones)
+
 **Reads spatial transcriptomics input, computes tumor regions based on celltype annotations for tumor microenvironment analysis, and visualizes region assignments.**
 
 ## Features
