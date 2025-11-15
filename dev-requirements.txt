@@ -1,16 +1,6 @@
-# dev-requirements.txt
-
-# Testing
-pytest>=7.0
-pytest-cov>=4.0
-
-# Linting / formatting (optional but recommended)
-flake8>=6.0
-black>=24.0
-isort>=6.0
-
-# Jupyter / notebooks (optional if you run examples)
-notebook>=7.0
-
-# For GitHub Actions coverage reporting (optional)
-coverage>=7.0
+-r requirements.txt
+pytest
+pytest-cov
+black
+flake8
+mypy
