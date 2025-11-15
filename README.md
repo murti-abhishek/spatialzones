@@ -1,15 +1,13 @@
 # spatialzones
 
-**Python package to assign regions in spatial transcriptomics using graph-based representations.**
-
-`spatialzones` provides tools to analyze and visualize spatial transcriptomics datasets by computing biologically meaningful regions, such as inside, interface, and outside zones.
+**Reads spatial transcriptomics input, computes tumor regions and tumor microenvironment zones, and visualizes region assignments.**
 
 ## Features
 
-- Reads spatial transcriptomics input (AnnData)
-- Computes inside, interface, and outside zones
-- Easy-to-use API for region assignment
-- Optional visualization of region composition and gene expression
+- ☐ Computes **inside / interface / outside tumor regions** using spatial transcriptomics data  
+- ☐ Utilizes **nearest neighbors** to define spatial context  
+- ☐ Visualizes region assignments and regional compositions of cell types  
+- ☐ Supports plotting gene expression across regions
 
 ## Installation
 
