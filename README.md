@@ -1,26 +1,21 @@
 # spatialzones
-<<<<<<< HEAD
-Graph-based assignment of spatial tumor zones (inside / interface / outside) for spatial transcriptomics
-=======
 
-SpatialZones is a lightweight Python package for defining concentric spatial regions
-(**inside → interface → outside**) around tumor cells using graph distance on
-spatial transcriptomics data. It integrates seamlessly with **Scanpy**, **AnnData**, and **Squidpy**.
+**Python package to assign regions in spatial transcriptomics using graph-based representations.**
 
-The package provides:
-- `assign_tumor_regions()` — core algorithm for region assignment  
-- `plot_region_gene_spatial()` — spatial gene + region visualization  
-- `plot_region_composition()` — composition barplots  
-- `plot_gene_violin_by_region()` — violin plots  
-- `plot_graph_vs_euclidean()` — correlation between Euclidean and graph distance  
+`spatialzones` provides tools to analyze and visualize spatial transcriptomics datasets by computing biologically meaningful regions, such as inside, interface, and outside zones.
 
-This package is designed for spatial transcriptomics applications
-(Visium, Xenium, CosMx, and custom ST assays).
+## Features
 
----
+- Reads spatial transcriptomics input (AnnData)
+- Computes inside, interface, and outside zones
+- Easy-to-use API for region assignment
+- Optional visualization of region composition and gene expression
 
-## 📦 Installation
+## Installation
+
+Clone the repository and install in editable mode:
 
 ```bash
-pip install spatialzones
->>>>>>> ac84a1f1 (Initial commit)
+git clone https://github.com/murti-abhishek/spatialzones.git
+cd spatialzones
+pip install -e .
