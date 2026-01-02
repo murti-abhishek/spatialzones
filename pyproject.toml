@@ -26,6 +26,8 @@ dependencies = [
     "squidpy",
     "seaborn",
     "scikit-learn",
+    "zarr<3",
+    "ome-zarr<0.12",
 ]
 
 [project.urls]

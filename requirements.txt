@@ -5,3 +5,5 @@ seaborn
 scanpy
 anndata
 squidpy
+zarr<3
+ome-zarr<0.12

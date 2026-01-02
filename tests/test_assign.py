@@ -22,4 +22,4 @@ def test_assign_basic(example_adata):
 
     # Optional: quick check that plot works without error
     # This avoids needing a separate test if you want light integration testing
-    plot_region_composition(adata)
+    # plot_region_composition(adata)

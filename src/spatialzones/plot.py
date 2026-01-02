@@ -173,3 +173,137 @@ def plot_graph_vs_euclidean(temp):
     )
     plt.tight_layout()
     plt.show()
+
+
+# ============================================================
+#  Real vs Expected distribution
+# ============================================================
+
+def plot_expected_vs_observed_regions(temp, remove_celltypes=None):
+    """
+    Side-by-side stacked barplots comparing:
+      - Observed region composition per cell type
+      - Expected (global) region composition
+
+    Parameters
+    ----------
+    temp : AnnData
+        Must contain temp.obs['region'], temp.obs['temp_annotations'],
+        and temp.uns['region_colors']
+    remove_celltypes : list of str or None
+        Cell types to exclude (e.g. tumor cells)
+    """
+    if 'region' not in temp.obs:
+        raise ValueError("Missing temp.obs['region']. Run assign_tumor_regions first.")
+    if 'temp_annotations' not in temp.obs:
+        raise ValueError("Missing temp.obs['temp_annotations'].")
+    if 'region_colors' not in temp.uns:
+        raise ValueError("Missing temp.uns['region_colors']. Run assign_tumor_regions first.")
+
+    if remove_celltypes is None:
+        remove_celltypes = []
+
+    # Get region order and colors from the AnnData object
+    region_order = list(temp.obs['region'].cat.categories)
+    region_colors = dict(zip(region_order, temp.uns['region_colors']))
+
+    # -----------------------
+    # OBSERVED (per cell type)
+    # -----------------------
+    obs_df = temp.obs.copy()
+    if remove_celltypes:
+        obs_df = obs_df[~obs_df['temp_annotations'].isin(remove_celltypes)]
+
+    obs_counts = (
+        obs_df
+        .groupby(['temp_annotations', 'region'])
+        .size()
+        .reset_index(name='count')
+    )
+
+    obs_counts['Proportion'] = (
+        obs_counts
+        .groupby('temp_annotations')['count']
+        .transform(lambda x: x / x.sum())
+    )
+
+    obs_pivot = (
+        obs_counts
+        .pivot(index='temp_annotations', columns='region', values='Proportion')
+        .fillna(0)
+        [region_order]
+    )
+
+    # Order cell types by first region → last region gradient
+    obs_pivot = obs_pivot.sort_values(
+        by=[region_order[0], region_order[-1]], ascending=[False, True]
+    )
+
+    # -----------------------
+    # EXPECTED (global)
+    # -----------------------
+    exp_counts = temp.obs['region'].value_counts()
+    exp_prop = exp_counts / exp_counts.sum()
+
+    exp_df = pd.DataFrame(
+        {r: [exp_prop.get(r, 0)] for r in region_order},
+        index=['Expected']
+    )
+
+    # -----------------------
+    # PLOTTING
+    # -----------------------
+    fig, axes = plt.subplots(
+        ncols=2,
+        figsize=(18, 6),
+        gridspec_kw={'width_ratios': [5, 0.6]}
+    )
+
+    # Observed plot
+    obs_pivot.plot(
+        kind='bar',
+        stacked=True,
+        color=[region_colors[r] for r in obs_pivot.columns],
+        ax=axes[0],
+        edgecolor='none'
+    )
+
+    axes[0].set_title("Observed regional composition per cell type", fontsize=13)
+    axes[0].set_ylabel("Proportion")
+    axes[0].set_ylim(0, 1)
+    axes[0].set_xlabel("")
+
+    # --- FIXED TICKS ---
+    axes[0].tick_params(axis='x', labelsize=10)
+    axes[0].set_xticklabels(
+        axes[0].get_xticklabels(),
+        rotation=90,
+        ha='right'
+    )
+
+    # Expected plot
+    exp_df.plot(
+        kind='bar',
+        stacked=True,
+        color=[region_colors[r] for r in exp_df.columns],
+        ax=axes[1],
+        edgecolor='none',
+        legend=False
+    )
+
+    axes[1].set_title("Expected (global)", fontsize=13)
+    axes[1].set_ylim(0, 1)
+    axes[1].set_xlabel("")
+    axes[1].set_xticklabels(['All cells'])
+
+    # Legend
+    axes[0].legend(
+        title='Region',
+        bbox_to_anchor=(1.02, 1),
+        loc='upper left'
+    )
+
+    sns.despine(left=True, bottom=True)
+    plt.subplots_adjust(bottom=0.3)
+    plt.tight_layout()
+    plt.show()
