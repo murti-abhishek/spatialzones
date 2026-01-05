@@ -9,11 +9,11 @@
 
 ## Overview
 
-Understanding the tumor microenvironment (TME) requires precise spatial context. spatialzones leverages graph-based distances through cell-cell connectivity networks to identify:
+Understanding the tumor microenvironment (TME) requires precise spatial context. `spatialzones` leverages graph-based distances through cell-cell connectivity networks to identify:
 
-*Inside tumor*: Core tumor regions and immediately adjacent cells
-*Interface*: Cells at the tumor boundary with direct tumor contact
-*Outside tumor*: Cells in the surrounding stroma without tumor proximity
+- *Inside tumor*: Core tumor regions and immediately adjacent cells
+- *Interface*: Cells at the tumor boundary with direct tumor contact
+- *Outside tumor*: Cells in the surrounding stroma without tumor proximity
 
 Unlike simple Euclidean distance approaches, graph-based methods respect tissue connectivity and provide biologically meaningful region assignments.
 
