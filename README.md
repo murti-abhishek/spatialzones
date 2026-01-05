@@ -79,15 +79,15 @@ adata = sc.read_h5ad("src/spatialzones/datasets/example_spatial.h5ad")
 ```python
 assign_tumor_regions(
     adata,
-    tumor_type="Tumor Hepatoblast", ## any cell type in your annotations key
-    annotation_key="temp_annotations"
+    tumor_type="Tumor Hepatoblast", ## any cell type in your annotation_key
+    annotation_key="temp_annotations" ## metadata that stores your annotations
 )
 ```
 
 ### Plot regions and gene expression
 
 ```python
-plot_region_gene_spatial(adata, gene="AHSG")
+plot_region_gene_spatial(adata, gene="AHSG") ## AHSG is expressed by Hepatoblast like tumor cells
 ```
 
 ### Plot expected vs observed celltype distribution
@@ -95,10 +95,9 @@ plot_region_gene_spatial(adata, gene="AHSG")
 ```python
 sz.plot_expected_vs_observed_regions(
     adata,
-    # remove_celltypes=["Tumor Hepatoblast"]
+    remove_celltypes=["Tumor Hepatoblast"] ## you can visualize the celltype distribution with or without the tumor cells
 )
 ```
-
 ---
 
 ## What `assign_tumor_regions` adds
